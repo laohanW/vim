@@ -1,0 +1,111 @@
+set number
+set foldenable
+set foldmethod=manual
+set termencoding=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+set autoindent
+set nowrap
+set smartindent
+set tabstop=2
+set softtabstop=2
+set mobackup
+set shiftwidth=0
+set incsearch
+set ruler
+set showmatch
+call pathogen#infect()
+
+syntax on
+filetype plugin indent on
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+filetype plugin indent on
+Bundle 'godlygeek/tabular'
+Bundle 'scrooloose/nerdtree'
+let NERDChristmasTree=1
+let NERDTreeAutoCenter=1
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
+let NERDTreeWinPos='right'
+let NERDTreeWinSize=30
+map <F2> :NERDTreeToggle<CR>
+map <C-F2> :NERDTreeFind<CR>
+Bundle 'sfger/vim-eslint'
+Bundle 'scrooloose/syntastic'
+let g:syntastic_check_open=1
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_wq=0
+let g:syntastic_enable_signs=1
+let g:syntastic_enable_highlighting=1
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_html_checkers=['tidy','eslint']
+highlight SyntasticErrorSign guifg=white guiby=black
+let g:syntastic_always_populate_loc_list=0
+let g:syntastic_auto_loc_list=0
+let g:syntastic_loc_list_height=5
+function! ToggleErrors()
+	let old_last_winor=winor('$')
+	lclose
+	if old_last_winor==winor('$')
+		"Nothing was closed,open syntastic error location panel
+	endif
+endfunction
+nnoremap <Leader>s :call ToggleErrors()<CR>
+"nnoremap <Leader>sn :lnext<CR>
+"nnoremap <Leader>sp :lprevious<CR>
+let g:syntastic_ignore_file=[".*\.py$"]
+Bundle 'pangloss/vim-javascript'
+let g:javascript_plugin_jsdoc=1
+let g:javascript_plugin_mydoc=1
+let g:javascript_plugin_flow=1
+"set foldmethod=syntax
+set conceallevel=1
+Bundle 'jamescarr/snipmate-nodejs'
+Bundle 'fholgado/minibufexpl.vim'
+let g:miniBufExplMapWindowNavArrows=1
+let g:miniBufExplMapWindowNavVim=1
+let g:miniBufExplMapCTabSwitchWindow=1
+let g:miniBufExplMapModSelTarget=
+let g:miniBufExplForceSyntaxEnable=1
+let g:miniBufExploreerMoreThanOne=2
+Bundle 'guileen/vim-node'
+au FileType javascript set dictionary+=~/.vim/bundle/vim-node/dict
+Bundle 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_map='<Leader>p'
+let g:ctrlp_cmd='CtrlP'
+map <F4> :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore={
+\'dir':'\v[\/]\,(git|hg|svn|rvn)$',
+\'file':'\v\,(exe|soldll|zip|tar|tar.gz|pyc)$',
+\}
+let g:ctrlp_working_path_node=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+lei g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+Bundle 'tacahiroy/ctrlp_funky'
+nnoremap <Leader>fu :CtrlPFunky<CR>
+nnoremap <Leader>fU :execute'CtrlpFunky' .expand('<cword>')<CR>
+let g:ctrlp_funky_syntax_heiglight=1
+let g:ctrlp_extensions=['funky']
+Bundle 'myhere/vim-nodejs-complete'
+let g:nodejs-complete_config={
+\'js_compl_fn':'javascriptcomplete#CompleteJS',
+\'max_code_compl_lem':15
+\}
+"Bundle 'Valloric/YouCompleteMe'
+Bundle 'honza/vim-snippets'
+Bundle 'garbas/vim-snipmate'
+"let g:snipmate=get(g:,'snipMate',{})
+"let g:snipMate.scope_aliases={}
+"let g:snipMate.scope_aliases['ruby']='ruby.rails'
+
+Bundle 'tomtom/tlib_vim'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'easymotion/vim-easymotion'

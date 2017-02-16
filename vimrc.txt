@@ -6,16 +6,18 @@ set smartindent
 set tabstop=4
 set softtabstop=4
 set nobackup
+set backspace=indent,eol,start
 "set expandtab
-"set shiftwidth=2
-"set autoindent
+set showcmd
+set shiftwidth=4
+"set foldmethod=indent
 call pathogen#infect()
 syntax on
 filetype plugin indent on
-
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
 Bundle 'pangloss/vim-javascript'
@@ -27,13 +29,17 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowBookmarks=1
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
-let NERDTreeWinPos='left'
 let NERDTreeWinSize=25
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-Bundle 'jamescarr/snipmate-nodejs'
-Bundle 'guileen/vim-node'
-au FileType javascript set dictionary+=~/.vim/bundle/vim-node/dict/node.dict
-Bundle 'myhere/vim-nodejs-complete'
+Bundle 'laohanW/vim-react-snippets'
+Bundle 'laohanW/vim-react-dict'
+au FileType javascript set dictionary=~/.vim/bundle/vim-react-dict/dict/node.dict
+
+" Bundle 'honza/vim-snippets'
+ "Bundle 'jamescarr/snipmate-nodejs'
+" Bundle 'guileen/vim-node'
+"au FileType javascript set dictionary+=~/.vim/bundle/vim-node/dict/node.dict
+ Bundle 'myhere/vim-nodejs-complete'
+au CursorMovedI,InsertLeave * if pumvisible() ==0|silent! pclose|endif
